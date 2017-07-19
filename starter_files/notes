@@ -1,0 +1,43 @@
+file.each_line do |line|
+  words = line.split
+  words.each do |word|
+    word = word.gsub(/[,()'"]/,'')
+    if WORDS_COUNT[word]
+      WORDS_COUNT[word] += 1
+    else
+      WORDS_COUNT[word] = 1
+    end
+  end
+end
+
+
+
+
+
+#file_names = ['foo.txt', 'bar.txt']
+
+#file_names.each do |file_name|
+#  text = File.read(file_name)
+#  new_contents = text.gsub(/search_regexp/, "replacement string")
+
+
+
+the_file='/Users/Al/DD/Ruby/GettysburgAddress.txt'
+h = Hash.new
+f = File.open(the_file, "r")
+f.each_line { |line|
+  words = line.split
+  words.each { |w|
+    if h.has_key?(w)
+      h[w] = h[w] + 1
+    else
+      h[w] = 1
+    end
+  }
+}
+
+def count_em(string, substring)
+  string.scan(/(?=#{substring})/).count
+end
+
+count_em(string,"aa")
